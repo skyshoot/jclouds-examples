@@ -55,6 +55,11 @@
     </dependency>
     <dependency>
       <groupId>org.apache.jclouds.provider</groupId>
+      <artifactId>cloudfiles-uk</artifactId>
+      <version>${jclouds.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jclouds.provider</groupId>
       <artifactId>rackspace-cloudblockstorage-us</artifactId>
       <version>${jclouds.version}</version>
     </dependency>

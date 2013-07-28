@@ -19,8 +19,6 @@
 package org.jclouds.examples.rackspace.cloudfiles;
 
 import static java.util.concurrent.Executors.newFixedThreadPool;
-import static org.jclouds.Constants.PROPERTY_PROVIDER;
-import static org.jclouds.Constants.PROPERTY_IO_WORKER_THREADS;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.io.Closeable;
@@ -54,8 +52,8 @@ import com.google.common.util.concurrent.MoreExecutors;
 public class UploadDirectoryToCDN implements Closeable {
    // The provider configures jclouds To use the Rackspace Cloud (US)
    // To use the Rackspace Cloud (UK) set the system property or default value to "cloudfiles-uk"
-   public static final String PROVIDER = System.getProperty(PROPERTY_PROVIDER, "cloudfiles-us");
-   public static final int THREADS = Integer.getInteger(PROPERTY_IO_WORKER_THREADS, 10);
+   private static final String PROVIDER = System.getProperty("cloudfiles.provider", "cloudfiles-us");
+   private static final int THREADS = Integer.getInteger("upload.threadpool.size", 10);
 
    private final BlobStore storage;
    private final CloudFilesClient rackspace;
@@ -213,7 +211,7 @@ public class UploadDirectoryToCDN implements Closeable {
    }
 
    /**
-    * Example of a FutureCallback triggered with an upload has finished. Just prints out a character to inform
+    * Example of a FutureCallback triggered when an upload has finished. Just prints out a character to inform
     * the user of upload progress.
     */
    private class BlobUploaderCallback implements FutureCallback<BlobDetail> {
